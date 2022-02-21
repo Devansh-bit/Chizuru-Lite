@@ -1,0 +1,6 @@
+# Rename as .env after filling up all the fields
+
+TOKEN=your_discord_bot_token
+SPOTIPY_CLIENT_ID=your_spotify_dev_app_client_id
+SPOTIPY_CLIENT_SECRET=your_spotify_dev_app_client_secret
+MONGO_URI=your_mongo_db_connection_url

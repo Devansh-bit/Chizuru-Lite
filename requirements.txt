@@ -1,0 +1,14 @@
+git+https://github.com/Pycord-Development/pycord
+python-dotenv
+PyNaCl
+requests
+yt-dlp
+spotipy
+attrify
+lyricsgenius
+GitPython
+fuzzywuzzy
+pytz
+python-Levenshtein
+motor
+dnspython

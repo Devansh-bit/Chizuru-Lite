@@ -1,0 +1,31 @@
+{   
+    "bot_setup": {
+        "debug_guilds": null,
+        "bot_name": "Chizuru",
+        "version": "1.0.0",
+        "logging": {
+            "log_file": "chizuru.log"
+        },
+        "embed_colour": "#0099ff",
+        "bot_owner_discord_ids": [
+            291043355104641025
+        ],
+        "database_name": "chizuru-lite"
+    },
+    "errors": {
+        "error_embed_colour": "#0099ff",
+        "author_not_connected": "Please connect to a voice channel before using this command again",
+        "not_connected_to_voice": "I'm not connected to a voice channel.",
+        "connected_to_another_voice": "I'm already connected to a voice channel.",
+        "unrecognised_link": "I only support Youtube and Spotify links atm.",
+        "query_processing_fail": "Couldn't process the query.",
+        "not_playing": "I'm not playing anything right now. Use /play to connect to a voice channel",
+        "no_playlists": "There are no playlists in this queue",
+        "empty_queue": "The queue is empty",
+        "improper_page": "Please enter page number",
+        "improper_volume": "Please enter a number between 0 and 100",
+        "improper_position": "Please enter a proper position",
+        "no_song_lyrics": "Either give me a song title or play a song.",
+        "no_lyrics_found": "No lyrics found for this song."
+    }
+}
