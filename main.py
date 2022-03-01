@@ -56,17 +56,16 @@ async def on_application_command_error(context, exception) -> None:
     else:
         raise exception
 
-@bot.event
-async def on_interaction(interaction:discord.Interaction):
-    if interaction.guild_id is None:
-        return
-    if str(interaction.guild_id) not in allowed_guilds:
-        return
-    else:
-        await bot.process_application_commands(interaction)
+# @bot.event
+# async def on_interaction(interaction:discord.Interaction):
+#     if interaction.guild_id is None:
+#         return
+#     if str(interaction.guild_id) not in allowed_guilds:
+#         return
+#     else:
+#         await bot.process_application_commands(interaction)
 
 
-bind_channel = 835886494770135054
 @bot.event
 async def on_message(message:discord.Message):
     if message.content.startswith("-log") and message.author.id in bot.config.bot_owner_discord_ids:
