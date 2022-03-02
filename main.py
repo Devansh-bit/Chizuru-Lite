@@ -56,23 +56,20 @@ async def on_application_command_error(context, exception) -> None:
     else:
         raise exception
 
-@bot.event
-async def on_interaction(interaction:discord.Interaction):
-    if interaction.guild_id is None:
-        return
-    if str(interaction.guild_id) not in allowed_guilds:
-        return
-    else:
-        await bot.process_application_commands(interaction)
+# @bot.event
+# async def on_interaction(interaction:discord.Interaction):
+#     if interaction.guild_id is None:
+#         return
+#     if str(interaction.guild_id) not in allowed_guilds:
+#         return
+#     else:
+#         await bot.process_application_commands(interaction)
 
-
-bind_channel = 835886494770135054
-@bot.event
-async def on_message(message:discord.Message):
-    if message.content.startswith("-log") and message.author.id in bot.config.bot_owner_discord_ids:
+class Commands:
+    async def log(message):
         await message.channel.send(file=discord.File("./chizuru_bot.log"))
         logger.info("----------------------------------------Last -log ends here--------------------------------------------")
-    elif message.content.startswith("-add") and message.author.id in bot.config.bot_owner_discord_ids:
+    async def add(message):
         args = message.content.split(" ")[1:]
         if len(args) == 2:
             access_token = get_random_string()
@@ -81,11 +78,19 @@ async def on_message(message:discord.Message):
             await message.channel.send("Guild ID: " + args[0] + "\nUser ID: " + args[1] + "\nAccess Token: " + access_token)
         else:
             return
-    elif message.content.startswith("-get") and message.author.id in bot.config.bot_owner_discord_ids:
+    async def get(message):
         guild_id = message.content.split(" ")[1]
         document = await allowed_guilds_collection.find_one({'guild_id': guild_id})
         await message.channel.send("Guild ID: " + guild_id + "\nUser ID: " + document['user_id'] + "\nAccess Token: " + document['access_token'])
-    return
+
+
+@bot.event
+async def on_message(message:discord.Message):
+    async def default(message):
+        return
+    if message.author.id in bot.config.bot_owner_discord_ids and message.content.startswith("-"):
+        await getattr(Commands, message.content.split()[0].replace("-", "").lower(), default)(message)
+
 
 def get_random_string():
     # choose from all lowercase letter
