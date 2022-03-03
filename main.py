@@ -82,6 +82,9 @@ class Commands:
         guild_id = message.content.split(" ")[1]
         document = await allowed_guilds_collection.find_one({'guild_id': guild_id})
         await message.channel.send("Guild ID: " + guild_id + "\nUser ID: " + document['user_id'] + "\nAccess Token: " + document['access_token'])
+    async def guilds(message):
+        guild_names = "\n".join([guild.name for guild in bot.guilds]).strip()
+        await message.channel.send(embed=discord.Embed(description=guild_names).set_footer(text=f"{len(bot.guilds)} guilds"))
 
 
 @bot.event
